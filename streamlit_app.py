@@ -5,6 +5,22 @@ from PIL import Image
 import requests
 from io import BytesIO
 
+# Konfiguracja strony
+st.set_page_config(
+    page_title="Jurassic ID",
+    page_icon="🦖",
+    layout="centered"
+)
+
+# Stylizacja z dodatkowym stylem dla ikony
+st.markdown("""
+<style>
+    .main-header {font-size: 2.5rem; font-weight: bold; text-align: center;}
+    .result-text {font-size: 1.5rem; font-weight: bold; margin-top: 1rem;}
+    .centered-image {display: flex; justify-content: center;}
+</style>
+""", unsafe_allow_html=True)
+
 # Ikona dinozaura
 try:
     url = "https://img.icons8.com/?size=100&id=1cWHYsfc86W4&format=png&color=000000"
@@ -18,30 +34,6 @@ try:
         unsafe_allow_html=True
     )
 except Exception:
-    st.markdown('<h1 style="text-align: center;">🦖</h1>', unsafe_allow_html=True)
-
-
-# Stylizacja z dodatkowym stylem dla ikony
-st.markdown("""
-<style>
-    .main-header {font-size: 2.5rem; font-weight: bold; text-align: center;}
-    .result-text {font-size: 1.5rem; font-weight: bold; margin-top: 1rem;}
-    .centered-image {display: flex; justify-content: center;}
-</style>
-""", unsafe_allow_html=True)
-
-# Ikona dinozaura - bardziej precyzyjne wyśrodkowanie
-try:
-    url = "https://img.icons8.com/?size=100&id=1cWHYsfc86W4&format=png&color=000000"
-    response = requests.get(url)
-    img = Image.open(BytesIO(response.content))
-    
-    # Kontener z klasą CSS dla wyśrodkowania
-    st.markdown('<div class="centered-image">', unsafe_allow_html=True)
-    st.image(img, width=100, output_format="PNG")
-    st.markdown('</div>', unsafe_allow_html=True)
-except Exception:
-    # Wyśrodkowany emoji dinozaura jako fallback
     st.markdown('<h1 style="text-align: center;">🦖</h1>', unsafe_allow_html=True)
 
 # Tytuł aplikacji
