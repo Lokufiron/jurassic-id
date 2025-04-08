@@ -1,15 +1,25 @@
+import base64
 import streamlit as st
 import random
 from PIL import Image
 import requests
 from io import BytesIO
 
-# Konfiguracja strony
-st.set_page_config(
-    page_title="Jurassic ID",
-    page_icon="🦖",
-    layout="centered"
-)
+# Ikona dinozaura
+try:
+    url = "https://img.icons8.com/?size=100&id=1cWHYsfc86W4&format=png&color=000000"
+    response = requests.get(url)
+    image_data = BytesIO(response.content).getvalue()
+    
+    st.markdown(
+        f'<div style="display: flex; justify-content: center; width: 100%;">'
+        f'<img src="data:image/png;base64,{base64.b64encode(image_data).decode()}" width="100">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+except Exception:
+    st.markdown('<h1 style="text-align: center;">🦖</h1>', unsafe_allow_html=True)
+
 
 # Stylizacja z dodatkowym stylem dla ikony
 st.markdown("""
